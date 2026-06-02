@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QWN AGENCY - закрытая экосистема для премиум-стримеров. Цифровая автономия, полная анонимность, высокий доход.">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>QWN AGENCY | Premium Streaming Agency</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'qwn-black': '#0a0a0a',
+                        'qwn-graphite': '#1a1a1a',
+                        'qwn-charcoal': '#2a2a2a',
+                        'qwn-white': '#fafafa',
+                        'qwn-milk': '#e8e4e1',
+                        'qwn-gray': '#888888'
+                    },
+                    fontFamily: {
+                        'cinzel': ['Cinzel', 'serif'],
+                        'courier': ['Courier Prime', 'monospace'],
+                        'playfair': ['Playfair Display', 'serif'],
+                        'gothic': ['UnifrakturMaguntia', 'cursive']
+                    },
+                    letterSpacing: {
+                        'widest-xl': '0.25em',
+                        'wider-xl': '0.2em'
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.5s ease-out forwards',
+                        'slide-up': 'slideUp 1s ease-out forwards',
+                        'slow-fade': 'slowFade 2s ease-out forwards'
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slowFade: {
+                            '0%': { opacity: '0' },
+                            '50%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Base Reset & Core Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+        
+        body {
+            background-color: #0a0a0a;
+            color: #fafafa;
+            font-family: 'Courier Prime', monospace;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Selection Color */
+        ::selection {
+            background-color: #fafafa;
+            color: #0a0a0a;
+        }
+        
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Image Filters */
+        .grayscale-high {
+            filter: grayscale(1) contrast(1.2) brightness(0.9);
+        }
+        
+        .grayscale-hover:hover {
+            filter: grayscale(0) contrast(1) brightness(1);
+            transition: filter 0.5s ease;
+        }
+        
+        /* Button Styles */
+        .btn-premium {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: 'Courier Prime', monospace;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border: 1px solid #fafafa;
+            background: transparent;
+            color: #fafafa;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+        }
+        
+        .btn-premium:hover {
+            background: #fafafa;
+            color: #0a0a0a;
+        }
+        
+        .btn-premium-lg {
+            padding: 1.25rem 3.5rem;
+            font-size: 0.875rem;
+            letter-spacing: 0.2em;
+        }
+        
+        /* Section Dividers */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+        }
+        
+        /* Gothic Ornamental Divider */
+        .gothic-divider {
+            position: relative;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(250,250,250,0.15), transparent);
+            margin: 0;
+        }
+        
+        .gothic-divider::before,
+        .gothic-divider::after {
+            content: '✦';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            color: rgba(250,250,250,0.3);
+            letter-spacing: 2em;
+        }
+        
+        .gothic-divider::before {
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        
+        /* Sigil Divider - Occult Symbol Style */
+        .sigil-divider {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.4;
+            margin: 0;
+            padding: 30px 0;
+        }
+        
+        .sigil-divider svg {
+            height: 60px;
+            width: auto;
+            stroke: rgba(250,250,250,0.3);
+            fill: none;
+            stroke-width: 1;
+        }
+        
+        /* Enhanced Sigil with more detail */
+        .sigil-divider.complex svg {
+            stroke: rgba(250,250,250,0.35);
+        }
+        
+        /* Sigil Line - Horizontal with symbols */
+        .sigil-line {
+            position: relative;
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(250,250,250,0.1) 20%, 
+                rgba(250,250,250,0.3) 50%, 
+                rgba(250,250,250,0.1) 80%, 
+                transparent 100%);
+            margin: 40px 0;
+        }
+        
+        .sigil-line::before,
+        .sigil-line::after {
+            content: '◈';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8px;
+            color: rgba(250,250,250,0.3);
+            letter-spacing: 1.5em;
+        }
+        
+        .sigil-line::before {
+            left: 30%;
+        }
+        
+        .sigil-line::after {
+            right: 30%;
+        }
+        
+        /* Thorn Divider - Minimal Spikes */
+        .thorn-divider {
+            position: relative;
+            height: 20px;
+            margin: 0;
+            background: transparent;
+        }
+        
+        .thorn-divider svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .thorn-divider path {
+            fill: none;
+            stroke: rgba(250,250,250,0.15);
+            stroke-width: 1;
+        }
+        
+        /* Remove old gothic-cross styles */
+        .gothic-cross {
+            display: none;
+        }
+        
+        /* Thorn Divider - Minimal Spikes */
+        .thorn-divider {
+            position: relative;
+            height: 20px;
+            margin: 0;
+            background: transparent;
+        }
+        
+        .thorn-divider svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .thorn-divider path {
+            fill: none;
+            stroke: rgba(250,250,250,0.15);
+            stroke-width: 1;
+        }
+        
+        /* Fleur-de-lis Ornament */
+        .fleur-divider {
+            text-align: center;
+            padding: 20px 0;
+            opacity: 0.3;
+        }
+        
+        .fleur-divider span {
+            font-size: 24px;
+            color: rgba(250,250,250,0.25);
+            letter-spacing: 1em;
+        }
+        
+        /* Grid Lines */
+        .grid-line {
+            border-color: rgba(250, 250, 250, 0.1);
+        }
+        
+        /* Noise Overlay Effect */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        
+        /* Newspaper Texture Overlay */
+        .newspaper-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.025;
+            background-image: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.03) 2px,
+                rgba(255, 255, 255, 0.03) 4px
+            );
+        }
+        
+        /* Crumpled Paper Effect */
+        .crumpled-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0.03;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(0,0,0,0.2) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%);
+            mix-blend-mode: overlay;
+            }
+            
+            /* Newspaper Clip Art Backgrounds */
+            .newspaper-clip-1 {
+                position: absolute;
+                top: 10%;
+            right: 5%;
+            width: 280px;
+            height: 350px;
+            background-image: url("https://images.unsplash.com/photo-1586899029211-1a0b2420a956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80");
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(1) contrast(1.3) brightness(0.7);
+            opacity: 0.15;
+            transform: rotate(8deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .newspaper-clip-2 {
+            position: absolute;
+            bottom: 15%;
+            left: 3%;
+            width: 220px;
+            height: 280px;
+            background-image: url("https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80");
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(1) contrast(1.3) brightness(0.6);
+            opacity: 0.12;
+            transform: rotate(-5deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .newspaper-clip-3 {
+            position: absolute;
+            top: 25%;
+            left: 8%;
+            width: 180px;
+            height: 240px;
+            background-image: url("https://images.unsplash.com/photo-1550948537-130a1ce83314?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80");
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(1) contrast(1.4) brightness(0.5);
+            opacity: 0.1;
+            transform: rotate(12deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* Triangle Newspaper Element */
+        .newspaper-triangle {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-image: url("https://images.unsplash.com/photo-1586899029211-1a0b2420a956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80");
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(1) contrast(1.3) brightness(0.6);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        }
+        
+        /* Broken Glass Overlay */
+        .broken-glass {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.03) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(255,255,255,0.03) 50%, transparent 52%);
+            background-size: 120px 120px;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
+        }
+        
+        /* Glass Shard Pattern */
+        .glass-shards {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(30deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(150deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* Frosted Glass Effect */
+        .glass-panel {
+            background: rgba(26, 26, 26, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        /* Glass Card Variant */
+        .glass-card {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        
+        /* Grain Texture for Images */
+        .grain-overlay {
+            position: relative;
+        }
+        
+        .grain-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.06;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+        }
+        
+        /* Parallax Container */
+        .parallax-container {
+            overflow: hidden;
+        }
+        
+        /* Text Utilities */
+        .text-manifesto {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            line-height: 1.8;
+        }
+        
+        /* Module Container Base */
+        .module {
+            position: relative;
+        }
+        
+        /* Gothic Initial Letter (Bukvitsa) */
+        .gothic-initial {
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 4rem;
+            float: left;
+            line-height: 0.8;
+            margin-right: 0.15em;
+            color: rgba(250, 250, 250, 0.4);
+        }
+        
+        /* Gothic Portal Frame for Gallery */
+        .gothic-frame {
+            position: relative;
+            border: 1px solid rgba(250, 250, 250, 0.08);
+            overflow: hidden;
+        }
+        
+        .gothic-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(250, 250, 250, 0.04);
+            margin: 8px;
+            pointer-events: none;
+        }
+        
+        .gothic-frame::after {
+            content: '✦';
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            font-size: 10px;
+            color: rgba(250, 250, 250, 0.2);
+        }
+        
+        /* Animated Fog/Mist Effect */
+        .fog-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            overflow: hidden;
+        }
+        
+        .fog-layer {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: radial-gradient(ellipse at 50% 50%, rgba(250,250,250,0.02) 0%, transparent 70%);
+            animation: fogMove 30s ease-in-out infinite;
+        }
+        
+        .fog-layer:nth-child(2) {
+            animation: fogMove 45s ease-in-out infinite reverse;
+            opacity: 0.5;
+        }
+        
+        @keyframes fogMove {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(-10%) translateY(-5%); }
+        }
+        
+        /* Custom Cursor - Cross/Dagger Style */
+        .custom-cursor {
+            position: fixed;
+            width: 24px;
+            height: 24px;
+            pointer-events: none;
+            z-index: 10000;
+            display: none;
+        }
+        
+        .custom-cursor svg {
+            width: 100%;
+            height: 100%;
+            stroke: rgba(250, 250, 250, 0.6);
+            stroke-width: 1.5;
+            fill: none;
+        }
+        
+        @media (min-width: 1024px) {
+            .custom-cursor {
+                display: block;
+            }
+            body {
+                cursor: none;
+            }
+            a, button, [data-action] {
+                cursor: none;
+            }
+        }
+        
+        /* Thorn/Rose ERD Motif */
+        .thorn-motif {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        
+        .thorn-motif svg {
+            width: 100%;
+            height: 100%;
+            stroke: rgba(250, 250, 250, 0.3);
+            stroke-width: 0.8;
+            fill: none;
+        }
+        
+        /* Parallax Element */
+        .parallax-el {
+            will-change: transform;
+        }
+        
+        /* Responsive Typography */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+        }
+        
+        /* Utility Classes for Future Extensions */
+        .hidden-module {
+            display: none;
+        }
+        
+        .module-active {
+            display: block;
+        }
+        
+        /* Burger Button Styles */
+        .burger-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 100;
+        }
+        
+        .burger-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .burger-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .burger-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(250, 250, 250, 0.1);
+            padding: 2rem 1.5rem;
+            transform: translateY(-100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 40;
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 0;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            color: rgba(250, 250, 250, 0.8);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(250, 250, 250, 0.05);
+            transition: color 0.3s ease;
+        }
+        
+        .mobile-menu a:hover {
+            color: rgba(250, 250, 250, 1);
+        }
+        
+        .mobile-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        /* Mobile Language Switcher */
+        .mobile-lang-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(250, 250, 250, 0.1);
+        }
+    </style>
+</head>
+<body class="qwn-black">
+    <!-- Atmospheric Overlays (Subtle Texture Layers) -->
+    <div class="noise-overlay"></div>
+    <div class="newspaper-texture"></div>
+    <div class="crumpled-overlay"></div>
+    
+    <!-- Animated Fog Container -->
+    <div class="fog-container">
+        <div class="fog-layer"></div>
+        <div class="fog-layer"></div>
+    </div>
+    
+    <!-- Custom Cursor (Desktop Only) -->
+    <div class="custom-cursor">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cross/Dagger shape -->
+            <line x1="12" y1="2" x2="12" y2="22"/>
+            <line x1="7" y1="7" x2="17" y2="7"/>
+            <line x1="7" y1="17" x2="17" y2="17"/>
+            <circle cx="12" cy="12" r="2"/>
+        </svg>
+    </div>
+    
+    <!-- Navigation (Minimal) -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-4 mix-blend-difference glass-panel">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="font-cinzel text-lg tracking-widest-xl text-qwn-white no-underline">QWN</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex gap-6 items-center">
+                <a href="#conditions" class="text-xs tracking-wider text-qwn-white no-underline hover:opacity-50 transition-opacity" data-lang="ru-nav-conditions">УСЛОВИЯ</a>
+                <a href="#stages" class="text-xs tracking-wider text-qwn-white no-underline hover:opacity-50 transition-opacity" data-lang="ru-nav-stages">ЭТАПЫ</a>
+                <a href="vacancies.html" class="text-xs tracking-wider text-qwn-white no-underline hover:opacity-50 transition-opacity" data-lang="ru-nav-career">ДРУГИЕ ВАКАНСИИ</a>
+                <a href="#apply" class="text-xs tracking-wider text-qwn-white no-underline hover:opacity-50 transition-opacity" data-lang="ru-nav-apply">АНКЕТА</a>
+                
+                <!-- Language Switcher -->
+                <div class="flex gap-1 border border-white/20 px-2 py-1 ml-4">
+                    <button 
+                        class="lang-switch text-xs tracking-wider px-2 py-1 transition-all cursor-pointer no-underline"
+                        data-lang-code="ru"
+                        style="color: #fafafa;"
+                    >RU</button>
+                    <span class="text-xs text-white/20">/</span>
+                    <button 
+                        class="lang-switch text-xs tracking-wider px-2 py-1 transition-all cursor-pointer no-underline"
+                        data-lang-code="en"
+                        style="color: #888;"
+                    >EN</button>
+                </div>
+            </div>
+            
+            <!-- Mobile Burger Button -->
+            <button class="md:hidden burger-btn flex flex-col gap-1.5 p-2" aria-label="Menu">
+                <span class="w-5 h-[1px] bg-qwn-white transition-all duration-300"></span>
+                <span class="w-5 h-[1px] bg-qwn-white transition-all duration-300"></span>
+                <span class="w-5 h-[1px] bg-qwn-white transition-all duration-300"></span>
+            </button>
+            
+        </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- MODULE: HERO SECTION -->
+    <!-- ============================================ -->
+    <section id="hero" class="module h-screen w-full relative flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0 w-full h-full">
+            <img 
+                src="woman.jpeg" 
+                alt="QWN Agency Hero"
+                class="w-full h-full object-cover grayscale-high opacity-60"
+            >
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-qwn-black/70 via-qwn-black/30 to-qwn-black"></div>
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <!-- Logo -->
+            <h1 class="font-cinzel text-5xl md:text-7xl lg:text-8xl tracking-widest-xl text-qwn-white mb-6 animate-fade-in">
+                QWN AGENCY
+            </h1>
+            
+            <!-- Manifesto Subtitle -->
+            <p class="font-playfair text-lg md:text-xl lg:text-2xl text-qwn-milk italic opacity-80 mb-12 animate-slide-up max-w-3xl mx-auto leading-relaxed" data-lang="ru-hero-text">
+                Мы переосмыслили концепт онлайн-вещания. Qwn Agency - это закрытая экосистема для топ-стримеров, где твоя индивидуальность конвертируется в высокий доход без ущерба для твоей безопасности.
+                <br class="hidden md:block">
+                Цифровая автономия. Премиальный трафик. Полная анонимность.
+            </p>
+            
+            <!-- CTA Button -->
+            <a href="#apply" class="btn-premium inline-block animate-slow-fade" data-lang="ru-cta-hero">
+                Заполнить анкету
+            </a>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <div class="w-[1px] h-16 bg-gradient-to-b from-transparent via-qwn-white to-transparent opacity-30"></div>
+        </div>
+    </section>
+
+    <!-- Section Divider (Sigil Style) -->
+    <!-- <div class="section-divider"></div> -->
+    <div class="sigil-divider">
+        <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer decorative lines -->
+            <line x1="20" y1="30" x2="80" y2="30" stroke-width="0.8"/>
+            <line x1="320" y1="30" x2="380" y2="30" stroke-width="0.8"/>
+            
+            <!-- Left inner sigil - triple triangle -->
+            <path d="M90 30 L105 15 L120 30 L105 45 Z" stroke-width="0.8"/>
+            <path d="M95 30 L105 20 L115 30 L105 40 Z" stroke-width="0.6"/>
+            <circle cx="105" cy="30" r="4" stroke-width="0.6"/>
+            
+            <!-- Left connecting line -->
+            <line x1="125" y1="30" x2="150" y2="30" stroke-width="0.8"/>
+            
+            <!-- Center sigil - complex geometric pattern -->
+            <circle cx="200" cy="30" r="18" stroke-width="1"/>
+            <circle cx="200" cy="30" r="12" stroke-width="0.8"/>
+            <circle cx="200" cy="30" r="6" stroke-width="0.6"/>
+            <!-- Vertical axis -->
+            <line x1="200" y1="8" x2="200" y2="52" stroke-width="0.8"/>
+            <!-- Horizontal axis -->
+            <line x1="182" y1="30" x2="218" y2="30" stroke-width="0.8"/>
+            <!-- Diagonal cross -->
+            <line x1="187" y1="15" x2="213" y2="45" stroke-width="0.6"/>
+            <line x1="213" y1="15" x2="187" y2="45" stroke-width="0.6"/>
+            <!-- Outer points -->
+            <path d="M200 5 L203 10 L200 8 L197 10 Z" stroke-width="0.5"/>
+            <path d="M200 55 L203 50 L200 52 L197 50 Z" stroke-width="0.5"/>
+            
+            <!-- Right connecting line -->
+            <line x1="250" y1="30" x2="275" y2="30" stroke-width="0.8"/>
+            
+            <!-- Right inner sigil - triple triangle (mirrored) -->
+            <path d="M280 30 L295 15 L310 30 L295 45 Z" stroke-width="0.8"/>
+            <path d="M285 30 L295 20 L305 30 L295 40 Z" stroke-width="0.6"/>
+            <circle cx="295" cy="30" r="4" stroke-width="0.6"/>
+            
+            <!-- Right outer decorative line continuation -->
+            <line x1="315" y1="30" x2="320" y2="30" stroke-width="0.8"/>
+        </svg>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MODULE: CONDITIONS & CONCEPT -->
+    <!-- ============================================ -->
+    <section id="conditions" class="module py-24 md:py-32 px-6 relative overflow-hidden">
+        <!-- Newspaper Triangle Background Elements -->
+        <div class="newspaper-triangle" style="top: 5%; right: 10%; transform: rotate(15deg);"></div>
+        <div class="newspaper-triangle" style="bottom: 10%; left: 5%; transform: rotate(-25deg); clip-path: polygon(50% 0%, 100% 100%, 0% 100%);"></div>
+        <div class="newspaper-clip-1"></div>
+        <div class="broken-glass"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header -->
+            <div class="mb-16 md:mb-24">
+                <span class="font-courier text-xs tracking-wider text-qwn-gray block mb-4">// 01</span>
+                <h2 class="font-cinzel text-3xl md:text-4xl lg:text-5xl text-qwn-white tracking-wider" data-lang="ru-conditions-title">
+                    Условия & Концепт
+                </h2>
+            </div>
+            
+            <!-- Asymmetric Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+                <!-- Card 01 -->
+                <div class="group border-t border-l border-white/10 p-8 md:p-12 min-h-[320px] flex flex-col justify-between hover:bg-white/[0.02] transition-colors duration-500">
+                    <div>
+                        <span class="font-courier text-4xl md:text-5xl text-qwn-gray/40 block mb-6">01</span>
+                        <h3 class="font-playfair text-xl md:text-2xl text-qwn-white mb-4 tracking-wide" data-lang="ru-card1-title">
+                            Формат автономии
+                        </h3>
+                    </div>
+                    <p class="font-courier text-xs md:text-sm text-qwn-gray leading-relaxed" data-lang="ru-card1-text">
+                        Степень открытости трансляций выбираешь исключительно ты. От разговорных Non-Nude эфиров до приватных закрытых шоу. Полная свобода без навязанных рамок и давления.
+                    </p>
+                </div>
+                
+                <!-- Card 02 -->
+                <div class="group border-t border-white/10 p-8 md:p-12 min-h-[320px] flex flex-col justify-between hover:bg-white/[0.02] transition-colors duration-500 lg:border-l">
+                    <div>
+                        <span class="font-courier text-4xl md:text-5xl text-qwn-gray/40 block mb-6">02</span>
+                        <h3 class="font-playfair text-xl md:text-2xl text-qwn-white mb-4 tracking-wide" data-lang="ru-card2-title">
+                            Цифровой иммунитет
+                        </h3>
+                    </div>
+                    <p class="font-courier text-xs md:text-sm text-qwn-gray leading-relaxed" data-lang="ru-card2-text">
+                        Продвинутая система безопасности: блокировка трафика по странам и СНГ, маскировка цифрового следа, полное шифрование личных данных и NDA. Твоя анонимность - наш приоритет.
+                    </p>
+                </div>
+                
+                <!-- Card 03 -->
+                <div class="group border-t border-r border-white/10 p-8 md:p-12 min-h-[320px] flex flex-col justify-between hover:bg-white/[0.02] transition-colors duration-500">
+                    <div>
+                        <span class="font-courier text-4xl md:text-5xl text-qwn-gray/40 block mb-6">03</span>
+                        <h3 class="font-playfair text-xl md:text-2xl text-qwn-white mb-4 tracking-wide" data-lang="ru-card3-title">
+                            Финансовая независимость
+                        </h3>
+                    </div>
+                    <p class="font-courier text-xs md:text-sm text-qwn-gray leading-relaxed" data-lang="ru-card3-text">
+                        Премиальные чеки в индустрии стриминга, моментальные выплаты в крипте или валюте. Агентство берёт на себя весь технический сетап, трафик и софт.
+                    </p>
+                </div>
+                
+                <!-- Card 04 -->
+                <div class="group border-b border-l border-white/10 p-8 md:p-12 min-h-[320px] flex flex-col justify-between hover:bg-white/[0.02] transition-colors duration-500 md:col-span-2 lg:border-l-0">
+                    <div>
+                        <span class="font-courier text-4xl md:text-5xl text-qwn-gray/40 block mb-6">04</span>
+                        <h3 class="font-playfair text-xl md:text-2xl text-qwn-white mb-4 tracking-wide" data-lang="ru-card4-title">
+                            Персональный менеджмент
+                        </h3>
+                    </div>
+                    <p class="font-courier text-xs md:text-sm text-qwn-gray leading-relaxed" data-lang="ru-card4-text">
+                        Личный менеджер на связи 24/7. Помощь в развитии бренда, координация графиков, решение любых вопросов. Ты занимаешься творчеством - мы занимаемся остальным.
+                    </p>
+                </div>
+                
+                <!-- Card 05 -->
+                <div class="group border-b border-r border-white/10 p-8 md:p-12 min-h-[320px] flex flex-col justify-between hover:bg-white/[0.02] transition-colors duration-500">
+                    <div>
+                        <span class="font-courier text-4xl md:text-5xl text-qwn-gray/40 block mb-6">05</span>
+                        <h3 class="font-playfair text-xl md:text-2xl text-qwn-white mb-4 tracking-wide" data-lang="ru-card5-title">
+                            Закрытые платформы
+                        </h3>
+                    </div>
+                    <p class="font-courier text-xs md:text-sm text-qwn-gray leading-relaxed" data-lang="ru-card5-text">
+                        Доступ к премиальным международным платформам для стриминга. Только проверенные площадки с высокой платежеспособной аудиторией и защитой контента.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider (Sigil Style) -->
+    <!-- <div class="section-divider"></div> -->
+    <div class="sigil-divider">
+        <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="30" x2="80" y2="30" stroke-width="0.8"/>
+            <path d="M90 30 L105 15 L120 30 L105 45 Z" stroke-width="0.8"/>
+            <path d="M95 30 L105 20 L115 30 L105 40 Z" stroke-width="0.6"/>
+            <circle cx="105" cy="30" r="4" stroke-width="0.6"/>
+            <line x1="125" y1="30" x2="150" y2="30" stroke-width="0.8"/>
+            <circle cx="200" cy="30" r="18" stroke-width="1"/>
+            <circle cx="200" cy="30" r="12" stroke-width="0.8"/>
+            <circle cx="200" cy="30" r="6" stroke-width="0.6"/>
+            <line x1="200" y1="8" x2="200" y2="52" stroke-width="0.8"/>
+            <line x1="182" y1="30" x2="218" y2="30" stroke-width="0.8"/>
+            <line x1="187" y1="15" x2="213" y2="45" stroke-width="0.6"/>
+            <line x1="213" y1="15" x2="187" y2="45" stroke-width="0.6"/>
+            <path d="M200 5 L203 10 L200 8 L197 10 Z" stroke-width="0.5"/>
+            <path d="M200 55 L203 50 L200 52 L197 50 Z" stroke-width="0.5"/>
+            <line x1="250" y1="30" x2="275" y2="30" stroke-width="0.8"/>
+            <path d="M280 30 L295 15 L310 30 L295 45 Z" stroke-width="0.8"/>
+            <path d="M285 30 L295 20 L305 30 L295 40 Z" stroke-width="0.6"/>
+            <circle cx="295" cy="30" r="4" stroke-width="0.6"/>
+            <line x1="315" y1="30" x2="320" y2="30" stroke-width="0.8"/>
+            <line x1="320" y1="30" x2="380" y2="30" stroke-width="0.8"/>
+        </svg>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MODULE: STAGES / TIMELINE -->
+    <!-- ============================================ -->
+    <section id="stages" class="module py-24 md:py-32 px-6 bg-qwn-graphite/30 relative overflow-hidden">
+        <!-- Newspaper Background Elements -->
+        <div class="newspaper-triangle" style="top: 15%; left: 12%; transform: rotate(45deg) scale(0.8);"></div>
+        <div class="newspaper-clip-2" style="bottom: 8%; right: 8%;"></div>
+        <div class="glass-shards"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header -->
+            <div class="mb-16 md:mb-24">
+                <span class="font-courier text-xs tracking-wider text-qwn-gray block mb-4">// 02</span>
+                <h2 class="font-cinzel text-3xl md:text-4xl lg:text-5xl text-qwn-white tracking-wider" data-lang="ru-stages-title">
+                    Этапы Сотрудничества
+                </h2>
+            </div>
+            
+            <!-- Timeline -->
+            <div class="relative">
+                <!-- Vertical Line (Desktop) -->
+                <div class="hidden md:block absolute left-[50%] top-0 bottom-0 w-[1px] bg-white/10 translate-x-[-50%]"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12 md:space-y-24">
+                    <!-- Stage 01 -->
+                    <div class="relative md:flex items-center justify-between group">
+                        <!-- Content Left -->
+                        <div class="md:w-[45%] md:text-right md:pr-12 mb-4 md:mb-0 order-2 md:order-1">
+                            <span class="font-courier text-xs text-qwn-gray block mb-2" data-lang="ru-stage1-num">Этап 01</span>
+                            <h3 class="font-playfair text-xl text-qwn-white mb-3" data-lang="ru-stage1-title">Идентификация</h3>
+                            <p class="font-courier text-sm text-qwn-gray leading-relaxed" data-lang="ru-stage1-text">
+                                Заполнение анкеты в боте и выбор комфортного формата работы: Non-Nude или Private. Никаких личных встреч - всё максимально дистанционно и конфиденциально.
+                            </p>
+                        </div>
+                        
+                        <!-- Center Marker -->
+                        <div class="absolute left-0 md:left-[50%] w-3 h-3 bg-qwn-white rotate-45 translate-x-[-50%] md:translate-x-[-50%] order-1 md:order-2 z-10"></div>
+                        
+                        <!-- Spacer Right -->
+                        <div class="md:w-[45%] order-3 md:order-3"></div>
+                    </div>
+                    
+                    <!-- Stage 02 -->
+                    <div class="relative md:flex items-center justify-between group">
+                        <!-- Spacer Left -->
+                        <div class="md:w-[45%] order-1 md:order-1"></div>
+                        
+                        <!-- Center Marker -->
+                        <div class="absolute left-0 md:left-[50%] w-3 h-3 bg-transparent border border-qwn-white rotate-45 translate-x-[-50%] md:translate-x-[-50%] order-2 md:order-2 z-10"></div>
+                        
+                        <!-- Content Right -->
+                        <div class="md:w-[45%] md:pl-12 mb-4 md:mb-0 order-3 md:order-3">
+                            <span class="font-courier text-xs text-qwn-gray block mb-2" data-lang="ru-stage2-num">Этап 02</span>
+                            <h3 class="font-playfair text-xl text-qwn-white mb-3" data-lang="ru-stage2-title">Регистрация</h3>
+                            <p class="font-courier text-sm text-qwn-gray leading-relaxed" data-lang="ru-stage2-text">
+                                Онлайн-интервью с менеджером, детальный разбор платформ, ответы на интересующие вопросы. Регистрация и верификация на платформах с помощью технологии OnDato.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Stage 03: Онбординг & Сетап -->
+                    <div class="relative md:flex items-center justify-between group">
+                        <!-- Content Left -->
+                        <div class="md:w-[45%] md:text-right md:pr-12 mb-4 md:mb-0 order-2 md:order-1">
+                            <span class="font-courier text-xs text-qwn-gray block mb-2" data-lang="ru-stage2-5-num">Этап 03</span>
+                            <h3 class="font-playfair text-xl text-qwn-white mb-3" data-lang="ru-stage2-5-title">Онбординг & Сетап</h3>
+                            <p class="font-courier text-sm text-qwn-gray leading-relaxed" data-lang="ru-stage2-5-text">
+                                Подготовка оборудования, аккаунтов и софта нашими специалистами. Ты получаешь готовую инфраструктуру для старта.
+                            </p>
+                        </div>
+                        
+                        <!-- Center Marker -->
+                        <div class="absolute left-0 md:left-[50%] w-3 h-3 bg-qwn-white rotate-45 translate-x-[-50%] md:translate-x-[-50%] order-1 md:order-2 z-10"></div>
+                        
+                        <!-- Spacer Right -->
+                        <div class="md:w-[45%] order-3 md:order-3"></div>
+                    </div>
+                    
+                    <!-- Stage 04 -->
+                    <div class="relative md:flex items-center justify-between group">
+                        <!-- Content Left -->
+                        <div class="md:w-[45%] md:text-right md:pr-12 mb-4 md:mb-0 order-2 md:order-1">
+                            <span class="font-courier text-xs text-qwn-gray block mb-2" data-lang="ru-stage3-num">Этап 04</span>
+                            <h3 class="font-playfair text-xl text-qwn-white mb-3" data-lang="ru-stage3-title">Генерация прибыли</h3>
+                            <p class="font-courier text-sm text-qwn-gray leading-relaxed" data-lang="ru-stage3-text">
+                                Первый выход в онлайн под контролем личного ментора. Вывод чистой прибыли с первых часов трансляции. Моментальные выплаты без задержек и скрытых комиссий.
+                            </p>
+                        </div>
+                        
+                        <!-- Center Marker -->
+                        <div class="absolute left-0 md:left-[50%] w-3 h-3 bg-transparent border border-qwn-white rotate-45 translate-x-[-50%] md:translate-x-[-50%] order-1 md:order-2 z-10"></div>
+                        
+                        <!-- Spacer Right -->
+                        <div class="md:w-[45%] order-3 md:order-3"></div>
+                    </div>
+                    
+                    <!-- Stage 05 -->
+                    <div class="relative md:flex items-center justify-between group">
+                        <!-- Spacer Left -->
+                        <div class="md:w-[45%] order-1 md:order-1"></div>
+                        
+                        <!-- Center Marker -->
+                        <div class="absolute left-0 md:left-[50%] w-3 h-3 bg-transparent border border-qwn-white rotate-45 translate-x-[-50%] md:translate-x-[-50%] order-2 md:order-2 z-10"></div>
+                        
+                        <!-- Content Right -->
+                        <div class="md:w-[45%] md:pl-12 order-3 md:order-3">
+                            <span class="font-courier text-xs text-qwn-gray block mb-2" data-lang="ru-stage4-num">Этап 05</span>
+                            <h3 class="font-playfair text-xl text-qwn-white mb-3" data-lang="ru-stage4-title">Масштабирование</h3>
+                            <p class="font-courier text-sm text-qwn-gray leading-relaxed" data-lang="ru-stage4-text">
+                                Развитие личного бренда, выход на новые платформы, увеличение аудитории и дохода. Ты растёшь - мы предоставляем ресурсы и поддержку.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider (Sigil Style) -->
+    <!-- <div class="section-divider"></div> -->
+    <div class="sigil-divider">
+        <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="30" x2="80" y2="30" stroke-width="0.8"/>
+            <path d="M90 30 L105 15 L120 30 L105 45 Z" stroke-width="0.8"/>
+            <path d="M95 30 L105 20 L115 30 L105 40 Z" stroke-width="0.6"/>
+            <circle cx="105" cy="30" r="4" stroke-width="0.6"/>
+            <line x1="125" y1="30" x2="150" y2="30" stroke-width="0.8"/>
+            <circle cx="200" cy="30" r="18" stroke-width="1"/>
+            <circle cx="200" cy="30" r="12" stroke-width="0.8"/>
+            <circle cx="200" cy="30" r="6" stroke-width="0.6"/>
+            <line x1="200" y1="8" x2="200" y2="52" stroke-width="0.8"/>
+            <line x1="182" y1="30" x2="218" y2="30" stroke-width="0.8"/>
+            <line x1="187" y1="15" x2="213" y2="45" stroke-width="0.6"/>
+            <line x1="213" y1="15" x2="187" y2="45" stroke-width="0.6"/>
+            <path d="M200 5 L203 10 L200 8 L197 10 Z" stroke-width="0.5"/>
+            <path d="M200 55 L203 50 L200 52 L197 50 Z" stroke-width="0.5"/>
+            <line x1="250" y1="30" x2="275" y2="30" stroke-width="0.8"/>
+            <path d="M280 30 L295 15 L310 30 L295 45 Z" stroke-width="0.8"/>
+            <path d="M285 30 L295 20 L305 30 L295 40 Z" stroke-width="0.6"/>
+            <circle cx="295" cy="30" r="4" stroke-width="0.6"/>
+            <line x1="315" y1="30" x2="320" y2="30" stroke-width="0.8"/>
+            <line x1="320" y1="30" x2="380" y2="30" stroke-width="0.8"/>
+        </svg>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MODULE: GALLERY (Optional Extension Module) -->
+    <!-- ============================================ -->
+    <section class="module py-24 md:py-32 px-6 relative overflow-hidden">
+        <!-- Newspaper Background Elements -->
+        <div class="newspaper-triangle" style="bottom: 20%; right: 15%; transform: rotate(-35deg) scale(0.6);"></div>
+        <div class="newspaper-clip-3"></div>
+        <div class="broken-glass" style="opacity: 0.2;"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <!-- Section Header -->
+            <div class="mb-16 md:mb-24">
+                <span class="font-courier text-xs tracking-wider text-qwn-gray block mb-4" data-lang="ru-gallery-prefix">// Галерея</span>
+                <h2 class="font-cinzel text-3xl md:text-4xl lg:text-5xl text-qwn-white tracking-wider" data-lang="ru-gallery-title">
+                    Наши Лица
+                </h2>
+            </div>
+            
+            <!-- Gallery Grid with Gothic Frames -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
+                <div class="aspect-[3/4] overflow-hidden grayscale-high group gothic-frame">
+                    <img 
+                        src="https://cdn.pixabay.com/photo/2016/11/29/08/02/woman-1867136_1280.jpg" 
+                        alt="Model 01" 
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+                <div class="aspect-[3/4] overflow-hidden grayscale-high group gothic-frame md:mt-12">
+                    <img 
+                        src="https://cdn.pixabay.com/photo/2017/03/19/19/58/woman-2156903_1280.jpg" 
+                        alt="Model 02" 
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+                <div class="aspect-[3/4] overflow-hidden grayscale-high group gothic-frame">
+                    <img 
+                        src="https://cdn.pixabay.com/photo/2015/09/02/12/41/model-918567_1280.jpg" 
+                        alt="Model 03" 
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+                <div class="aspect-[3/4] overflow-hidden grayscale-high group gothic-frame md:mt-12">
+                    <img 
+                        src="https://cdn.pixabay.com/photo/2016/01/19/17/22/woman-1149353_1280.jpg" 
+                        alt="Model 04" 
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        referrerpolicy="no-referrer"
+                    >
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Divider (Sigil Style) -->
+    <!-- <div class="section-divider"></div> -->
+    <div class="sigil-divider">
+        <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
+            <line x1="20" y1="30" x2="80" y2="30" stroke-width="0.8"/>
+            <path d="M90 30 L105 15 L120 30 L105 45 Z" stroke-width="0.8"/>
+            <path d="M95 30 L105 20 L115 30 L105 40 Z" stroke-width="0.6"/>
+            <circle cx="105" cy="30" r="4" stroke-width="0.6"/>
+            <line x1="125" y1="30" x2="150" y2="30" stroke-width="0.8"/>
+            <circle cx="200" cy="30" r="18" stroke-width="1"/>
+            <circle cx="200" cy="30" r="12" stroke-width="0.8"/>
+            <circle cx="200" cy="30" r="6" stroke-width="0.6"/>
+            <line x1="200" y1="8" x2="200" y2="52" stroke-width="0.8"/>
+            <line x1="182" y1="30" x2="218" y2="30" stroke-width="0.8"/>
+            <line x1="187" y1="15" x2="213" y2="45" stroke-width="0.6"/>
+            <line x1="213" y1="15" x2="187" y2="45" stroke-width="0.6"/>
+            <path d="M200 5 L203 10 L200 8 L197 10 Z" stroke-width="0.5"/>
+            <path d="M200 55 L203 50 L200 52 L197 50 Z" stroke-width="0.5"/>
+            <line x1="250" y1="30" x2="275" y2="30" stroke-width="0.8"/>
+            <path d="M280 30 L295 15 L310 30 L295 45 Z" stroke-width="0.8"/>
+            <path d="M285 30 L295 20 L305 30 L295 40 Z" stroke-width="0.6"/>
+            <circle cx="295" cy="30" r="4" stroke-width="0.6"/>
+            <line x1="315" y1="30" x2="320" y2="30" stroke-width="0.8"/>
+            <line x1="320" y1="30" x2="380" y2="30" stroke-width="0.8"/>
+        </svg>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MODULE: FINAL CTA (MODEL APPLICATION) -->
+    <!-- ============================================ -->
+    <section id="apply" class="module py-32 md:py-48 px-6 relative overflow-hidden">
+        <!-- Background Accent -->
+        <div class="absolute inset-0 bg-gradient-to-t from-qwn-charcoal/50 to-transparent pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <!-- ERD-Style Manifesto -->
+            <p class="font-playfair italic text-lg md:text-xl lg:text-2xl text-qwn-milk mb-8 leading-relaxed" data-lang="ru-cta-manifesto">
+                «Твой запуск на закрытых мировых платформах. Безопасно. Анонимно.
+                <br class="hidden md:block">
+                Цифровая приватность - новая валюта свободы.»
+            </p>
+            
+            <!-- Large Text CTA -->
+            <h2 class="font-cinzel text-4xl md:text-6xl lg:text-7xl text-qwn-white tracking-widest mb-12" data-lang="ru-cta-title">
+                СТАТЬ ЧАСТЬЮ
+            </h2>
+            
+            <!-- Main CTA Button -->
+            <a 
+                href="#" 
+                class="btn-premium btn-premium-lg inline-block"
+                data-action="open-telegram-bot"
+                data-lang="ru-cta-btn"
+            >
+                Заполнить анкету
+            </a>
+            
+            <!-- Secondary Info -->
+            <p class="font-courier text-xs text-qwn-gray mt-8" data-lang="ru-cta-secondary">
+                Доступ к платформам. Полный контроль. Моментальный старт.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- MODULE: FOOTER -->
+    <!-- ============================================ -->
+    <footer class="module border-t border-white/10 py-12 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Logo -->
+                <span class="font-cinzel text-xl tracking-widest text-qwn-white">QWN AGENCY</span>
+                
+                <!-- Copyright -->
+                <p class="font-courier text-xs text-qwn-gray">
+                    © <span id="current-year"></span> QWN Agency. All rights reserved.
+                </p>
+                
+                <!-- Social Links (Optional) -->
+                <div class="flex gap-6">
+                    <a href="#" class="font-courier text-xs text-qwn-gray hover:text-qwn-white transition-colors no-underline" data-lang="ru-footer-tg">TELEGRAM</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="index.html#conditions" data-lang="ru-nav-conditions">УСЛОВИЯ</a>
+        <a href="index.html#stages" data-lang="ru-nav-stages">ЭТАПЫ</a>
+        <a href="vacancies.html" data-lang="ru-nav-career">ДРУГИЕ ВАКАНСИИ</a>
+        <a href="index.html#apply" data-lang="ru-nav-apply">АНКЕТА</a>
+        
+        <!-- Mobile Language Switcher -->
+        <div class="mobile-lang-switcher">
+            <button class="lang-switch text-xs tracking-wider px-3 py-1 border border-white/20" data-lang-code="ru" style="color: #fafafa;">RU</button>
+            <span class="text-xs text-white/20">/</span>
+            <button class="lang-switch text-xs tracking-wider px-3 py-1 border border-white/20" data-lang-code="en" style="color: #888;">EN</button>
+        </div>
+    </div>
+
+    <!-- Thorn/Rose ERD Motif Decorations -->
+    <div class="thorn-motif" style="top: 60%; right: 5%;">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <!-- Rose stem with thorns -->
+            <path d="M30 60 Q28 45 30 30 Q32 15 30 5"/>
+            <path d="M30 45 L20 38"/>
+            <path d="M30 45 L40 38"/>
+            <path d="M30 30 L18 25"/>
+            <path d="M30 30 L42 25"/>
+            <!-- Rose bud -->
+            <circle cx="30" cy="10" r="6"/>
+            <path d="M30 10 L25 5 M30 10 L35 5 M30 10 L30 3"/>
+        </svg>
+    </div>
+    <div class="thorn-motif" style="bottom: 20%; left: 3%; transform: rotate(180deg);">
+        <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 60 Q28 45 30 30 Q32 15 30 5"/>
+            <path d="M30 45 L20 38"/>
+            <path d="M30 45 L40 38"/>
+            <path d="M30 30 L18 25"/>
+            <path d="M30 30 L42 25"/>
+            <circle cx="30" cy="10" r="6"/>
+            <path d="M30 10 L25 5 M30 10 L35 5 M30 10 L30 3"/>
+        </svg>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT MODULES -->
+    <!-- ============================================ -->
+    <script>
+        /**
+         * QWN Agency - Core JavaScript Module
+         * Extensible architecture for future features
+         */
+        
+        // ========================================
+        // MODULE: Utils
+        // ========================================
+        const Utils = {
+            // Set current year in footer
+            setYear: () => {
+                const yearEl = document.getElementById('current-year');
+                if (yearEl) {
+                    yearEl.textContent = new Date().getFullYear();
+                }
+            },
+            
+            // Smooth scroll to element
+            scrollToElement: (selector) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
+            },
+            
+            // Debounce function for performance
+            debounce: (func, wait) => {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+        };
+        
+        // ========================================
+        // MODULE: Navigation
+        // ========================================
+        const Navigation = {
+            init: () => {
+                // Handle nav links
+                document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = link.getAttribute('href');
+                        Utils.scrollToElement(target);
+                    });
+                });
+                
+                // Navbar background on scroll
+                const nav = document.querySelector('nav');
+                window.addEventListener('scroll', Utils.debounce(() => {
+                    if (window.scrollY > 100) {
+                        nav.classList.add('bg-qwn-black/90', 'backdrop-blur-sm');
+                    } else {
+                        nav.classList.remove('bg-qwn-black/90', 'backdrop-blur-sm');
+                    }
+                }, 100));
+            }
+        };
+        
+        // ========================================
+        // MODULE: Animations
+        // ========================================
+        const Animations = {
+            // Intersection Observer for scroll animations
+            observer: null,
+            
+            init: () => {
+                // Check for IntersectionObserver support
+                if ('IntersectionObserver' in window) {
+                    Animations.observer = new IntersectionObserver(
+                        Animations.handleIntersection,
+                        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+                    );
+                    
+                    // Observe elements
+                    document.querySelectorAll('.module h2, .module h3, .module p').forEach(el => {
+                        el.classList.add('opacity-0', 'translate-y-8');
+                        Animations.observer.observe(el);
+                    });
+                }
+            },
+            
+            handleIntersection: (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('transition-opacity', 'transition-transform', 'duration-700', 'opacity-100', 'translate-y-0');
+                        Animations.observer.unobserve(entry.target);
+                    }
+                });
+            }
+        };
+        
+        // ========================================
+        // MODULE: CTA Handler
+        // ========================================
+        const CTAHandler = {
+            init: () => {
+                document.querySelectorAll('[data-action="open-telegram-bot"]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        // TODO: Replace with actual Telegram bot URL
+                        const telegramUrl = 'https://t.me/your_bot_name';
+                        window.open(telegramUrl, '_blank');
+                    });
+                });
+            }
+        };
+        
+        // ========================================
+        // MODULE: Future Extensions Placeholder
+        // ========================================
+        const FutureModules = {
+            // Example: Modal System
+            Modal: {
+                open: (content) => {
+                    console.log('Modal opened with content:', content);
+                    // Implementation for future modal system
+                },
+                close: () => {
+                    console.log('Modal closed');
+                }
+            },
+            
+            // Example: Form Handler
+            FormHandler: {
+                submit: (formData) => {
+                    console.log('Form submitted:', formData);
+                    // Implementation for future form handling
+                }
+            },
+            
+            // Example: Analytics
+            Analytics: {
+                track: (event, data) => {
+                    console.log('Analytics event:', event, data);
+                    // Implementation for future analytics
+                }
+            }
+        };
+        
+        // ========================================
+        // MODULE: Language Switcher
+        // ========================================
+        const LanguageSwitcher = {
+            currentLang: 'ru',
+            
+            translations: {
+                ru: {
+                    'nav-conditions': 'УСЛОВИЯ',
+                    'nav-stages': 'ЭТАПЫ',
+                    'nav-career': 'ДРУГИЕ ВАКАНСИИ',
+                    'nav-apply': 'АНКЕТА',
+                    'hero-text': 'Мы переосмыслили концепт онлайн-вещания. Qwn Agency - это экосистема для топ-стримеров, где твоя индивидуальность конвертируется в высокий доход без ущерба для твоей безопасности.<br class="hidden md:block">Цифровая автономия. Премиальный трафик. Полная анонимность.',
+                    'cta-hero': 'Заполнить анкету',
+                    'conditions-title': 'Условия & Концепт',
+                    'card1-title': 'Формат автономии',
+                    'card1-text': 'Степень открытости трансляций выбираешь исключительно ты. От разговорных Non-Nude эфиров до приватных закрытых шоу. Полная свобода без навязанных рамок и давления.',
+                    'card2-title': 'Цифровой иммунитет',
+                    'card2-text': 'Продвинутая система безопасности: блокировка трафика по странам и СНГ, маскировка цифрового следа, полное шифрование личных данных и NDA. Твоя анонимность - наш приоритет.',
+                    'card3-title': 'Финансовая независимость',
+                    'card3-text': 'Премиальные чеки в индустрии стриминга, моментальные выплаты в крипте или валюте. Агентство берёт на себя весь технический сетап, трафик и софт.',
+                    'card4-title': 'Персональный менеджмент',
+                    'card4-text': 'Личный менеджер на связи 24/7. Помощь в развитии бренда, координация графиков, решение любых вопросов. Ты занимаешься творчеством - мы занимаемся остальным.',
+                    'card5-title': 'Закрытые платформы',
+                    'card5-text': 'Доступ к премиальным международным платформам для стриминга. Только проверенные площадки с высокой платежеспособной аудиторией и защитой контента.',
+                    'stages-title': 'Этапы Сотрудничества',
+                    'stage1-num': 'Этап 01',
+                    'stage1-title': 'Идентификация',
+                    'stage1-text': 'Заполнение анкеты в боте и выбор комфортного формата работы: Non-Nude или Private. Никаких личных встреч - всё максимально дистанционно и конфиденциально.',
+                    'stage2-num': 'Этап 02',
+                    'stage2-title': 'Регистрация',
+                    'stage2-text': 'Онлайн-интервью с менеджером, детальный разбор платформ, ответы на интересующие вопросы. Регистрация и верификация на платформах с помощью технологии OnDato.',
+                    'stage2-5-num': 'Этап 03',
+                    'stage2-5-title': 'Онбординг & Сетап',
+                    'stage2-5-text': 'Подготовка оборудования, аккаунтов и софта нашими специалистами. Ты получаешь готовую инфраструктуру для старта.',
+                    'stage3-num': 'Этап 03',
+                    'stage3-title': 'Генерация прибыли',
+                    'stage3-text': 'Первый выход в онлайн под контролем личного ментора. Вывод чистой прибыли с первых часов трансляции. Моментальные выплаты без задержек и скрытых комиссий.',
+                    'stage4-num': 'Этап 04',
+                    'stage4-title': 'Масштабирование',
+                    'stage4-text': 'Развитие личного бренда, выход на новые платформы, увеличение аудитории и дохода. Ты растёшь - мы предоставляем ресурсы и поддержку.',
+                    'gallery-prefix': '// Галерея',
+                    'gallery-title': 'Наши Лица',
+                    'cta-manifesto': '«Твой запуск на закрытых мировых платформах. Безопасно. Анонимно.<br class="hidden md:block">Цифровая приватность - новая валюта свободы.»',
+                    'cta-title': 'СТАТЬ ЧАСТЬЮ',
+                    'cta-btn': 'Заполнить анкету',
+                    'cta-secondary': 'Доступ к платформам. Полный контроль. Моментальный старт.',
+                    'career-prefix': '// Команда',
+                    'career-title': 'Вакансии',
+                    'vacancy0-tag': 'УДАЛЁННО / ГИБКИЙ ГРАФИК',
+                    'vacancy0-title': 'Модель',
+                    'vacancy0-text': 'Создание премиального контента на закрытых платформах. Полная анонимность, безопасная среда, высокий доход. Ты контролируешь формат и границы.',
+                    'vacancy1-tag': 'УДАЛЁННО / 24/7',
+                    'vacancy1-title': 'Чаттер',
+                    'vacancy1-text': 'Управление чатами во время трансляций. Модерация, взаимодействие с аудиторией, создание комфортной атмосферы. Опыт работы с соцсетями приветствуется.',
+                    'vacancy2-tag': 'УДАЛЁННО / ГИБКИЙ',
+                    'vacancy2-title': 'Скаут',
+                    'vacancy2-text': 'Поиск и привлечение новых талантов. Работа в социальных сетях, первичные переговоры, презентация агентства. Коммуникабельность и умение убеждать.',
+                    'vacancy3-tag': 'В ОФИСЕ / СМЕНЫ',
+                    'vacancy3-title': 'Оператор',
+                    'vacancy3-text': 'Техническое обеспечение трансляций. Работа со светом, камерами, звуком. Настройка оборудования, контроль качества эфира. Опыт съёмки желателен.',
+                    'vacancy-apply': 'ОТКЛИКНУТЬСЯ',
+                    'vacancy-footer': '[ ВСЕ ВАКАНСИИ ОТКРЫТЫ ДЛЯ РЕГИОНОВ ]',
+                    'footer-copyright': '© <span id="current-year"></span> QWN Agency. All rights reserved.',
+                    'footer-tg': 'TELEGRAM'
+                },
+                en: {
+                    'nav-conditions': 'CONDITIONS',
+                    'nav-stages': 'STAGES',
+                    'nav-career': 'OTHER VACANCIES',
+                    'nav-apply': 'APPLY',
+                    'hero-text': 'We reimagined online broadcasting. Qwn Agency is an ecosystem for top streamers where your individuality converts into high income without compromising your security.<br class="hidden md:block">Digital autonomy. Premium traffic. Complete anonymity.',
+                    'cta-hero': 'Complete Application',
+                    'conditions-title': 'Conditions & Concept',
+                    'card1-title': 'Autonomy Format',
+                    'card1-text': 'You choose the level of openness for your streams. From conversational Non-Nude broadcasts to private closed shows. Complete freedom without imposed frameworks or pressure.',
+                    'card2-title': 'Digital Immunity',
+                    'card2-text': 'Advanced security system: geo-blocking by country and CIS, digital footprint masking, full encryption of personal data and NDA. Your anonymity is our priority.',
+                    'card3-title': 'Financial Independence',
+                    'card3-text': 'Premium rates in the streaming industry, instant crypto or fiat payouts. The agency handles all technical setup, traffic, and software.',
+                    'card4-title': 'Personal Management',
+                    'card4-text': 'Personal manager available 24/7. Brand development support, schedule coordination, resolving any issues. You focus on creativity - we handle the rest.',
+                    'card5-title': 'Closed Platforms',
+                    'card5-text': 'Access to premium international streaming platforms. Only verified venues with high-paying audiences and content protection.',
+                    'stages-title': 'Cooperation Stages',
+                    'stage1-num': 'Stage 01',
+                    'stage1-title': 'Identification',
+                    'stage1-text': 'Fill out the application form in the bot and choose your comfortable work format: Non-Nude or Private. No in-person meetings - everything is fully remote and confidential.',
+                    'stage2-num': 'Stage 02',
+                    'stage2-title': 'Registration',
+                    'stage2-text': 'Online interview with manager, detailed platform review, answering questions. Registration and verification on platforms using OnDato technology.',
+                    'stage2-5-num': 'Stage 03',
+                    'stage2-5-title': 'Onboarding & Setup',
+                    'stage2-5-text': 'Equipment, accounts, and software preparation by our specialists. You receive ready-to-use infrastructure for launch.',
+                    'stage3-num': 'Stage 04',
+                    'stage3-title': 'Profit Generation',
+                    'stage3-text': 'First online broadcast under personal mentor supervision. Withdraw net profit from the first hours of streaming. Instant payouts with no delays or hidden fees.',
+                    'stage4-num': 'Stage 05',
+                    'stage4-title': 'Scaling',
+                    'stage4-text': 'Personal brand development, expansion to new platforms, growing audience and income. You grow - we provide resources and support.',
+                    'gallery-prefix': '// Gallery',
+                    'gallery-title': 'Our Faces',
+                    'cta-manifesto': '«Your launch on closed global platforms. Safe. Anonymous.<br class="hidden md:block">Digital privacy is the new currency of freedom.»',
+                    'cta-title': 'BECOME PART OF',
+                    'cta-btn': 'Complete Application',
+                    'cta-secondary': 'Platform access. Full control. Instant start.',
+                    'career-prefix': '// Team',
+                    'career-title': 'Vacancies',
+                    'vacancy0-tag': 'REMOTE / FLEXIBLE',
+                    'vacancy0-title': 'Model',
+                    'vacancy0-text': 'Creating premium content on closed platforms. Complete anonymity, safe environment, high income. You control the format and boundaries.',
+                    'vacancy1-tag': 'REMOTE / 24/7',
+                    'vacancy1-title': 'Chatter',
+                    'vacancy1-text': 'Managing chats during broadcasts. Moderation, audience interaction, creating a comfortable atmosphere. Social media experience is a plus.',
+                    'vacancy2-tag': 'REMOTE / FLEXIBLE',
+                    'vacancy2-title': 'Scout',
+                    'vacancy2-text': 'Finding and attracting new talent. Working on social media, initial negotiations, presenting the agency. Communication skills and persuasiveness required.',
+                    'vacancy3-tag': 'ONSITE / SHIFT',
+                    'vacancy3-title': 'Operator',
+                    'vacancy3-text': 'Technical support for broadcasts. Working with lighting, cameras, sound. Equipment setup, broadcast quality control. Shooting experience is desirable.',
+                    'vacancy-apply': 'Apply Now',
+                    'vacancy-footer': '[ ALL POSITIONS OPEN FOR REGIONS ]',
+                    'footer-copyright': '© <span id="current-year"></span> QWN Agency. All rights reserved.',
+                    'footer-tg': 'TELEGRAM'
+                }
+            },
+            
+            // CIS country codes for auto-detection
+            cisCountries: ['RU', 'UA', 'BY', 'KZ', 'UZ', 'GE', 'AM', 'AZ', 'MD', 'TJ', 'KG', 'TM'],
+            
+            init: () => {
+                // Auto-detect language based on geolocation
+                LanguageSwitcher.detectLanguage();
+                
+                // Add click handlers to language buttons
+                document.querySelectorAll('.lang-switch').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const lang = e.target.getAttribute('data-lang-code');
+                        LanguageSwitcher.setLanguage(lang);
+                    });
+                });
+            },
+            
+            detectLanguage: () => {
+                // Try to get user's country via IP geolocation
+                fetch('https://ipapi.co/json/')
+                    .then(response => response.json())
+                    .then(data => {
+                        const countryCode = data.country_code;
+                        if (LanguageSwitcher.cisCountries.includes(countryCode)) {
+                            LanguageSwitcher.setLanguage('ru');
+                        } else {
+                            LanguageSwitcher.setLanguage('en');
+                        }
+                    })
+                    .catch(() => {
+                        // Fallback to browser language
+                        const browserLang = navigator.language.toLowerCase();
+                        if (browserLang.includes('ru') || browserLang.includes('uk') || browserLang.includes('be')) {
+                            LanguageSwitcher.setLanguage('ru');
+                        } else {
+                            LanguageSwitcher.setLanguage('en');
+                        }
+                    });
+            },
+            
+            setLanguage: (lang) => {
+                LanguageSwitcher.currentLang = lang;
+                const translations = LanguageSwitcher.translations[lang];
+                
+                // Update all content elements with data-lang attributes
+                document.querySelectorAll('[data-lang]').forEach(el => {
+                    const dataAttr = el.getAttribute('data-lang');
+                    const transKey = dataAttr.replace('ru-', '');
+                    if (translations[transKey]) {
+                        el.innerHTML = translations[transKey];
+                    }
+                });
+                
+                // Update language switcher styles
+                document.querySelectorAll('.lang-switch').forEach(btn => {
+                    const btnLang = btn.getAttribute('data-lang-code');
+                    if (btnLang === lang) {
+                        btn.style.color = '#fafafa';
+                    } else {
+                        btn.style.color = '#888';
+                    }
+                });
+                
+                // Update HTML lang attribute
+                document.documentElement.lang = lang;
+                
+                // Save preference
+                localStorage.setItem('qwn-lang', lang);
+                
+                console.log('Language set to:', lang);
+            }
+        };
+        
+        // ========================================
+        // MODULE: Custom Cursor
+        // ========================================
+        const CustomCursor = {
+            cursor: null,
+            
+            init: () => {
+                // Only for desktop
+                if (window.innerWidth >= 1024) {
+                    CustomCursor.cursor = document.querySelector('.custom-cursor');
+                    
+                    document.addEventListener('mousemove', (e) => {
+                        if (CustomCursor.cursor) {
+                            CustomCursor.cursor.style.left = (e.clientX - 12) + 'px';
+                            CustomCursor.cursor.style.top = (e.clientY - 12) + 'px';
+                        }
+                    });
+                    
+                    // Hover effect on interactive elements
+                    document.querySelectorAll('a, button, [data-action]').forEach(el => {
+                        el.addEventListener('mouseenter', () => {
+                            if (CustomCursor.cursor) {
+                                CustomCursor.cursor.style.transform = 'scale(1.3)';
+                                CustomCursor.cursor.style.opacity = '0.8';
+                            }
+                        });
+                        el.addEventListener('mouseleave', () => {
+                            if (CustomCursor.cursor) {
+                                CustomCursor.cursor.style.transform = 'scale(1)';
+                                CustomCursor.cursor.style.opacity = '1';
+                            }
+                        });
+                    });
+                }
+            }
+        };
+        
+        // ========================================
+        // MODULE: Parallax Effect
+        // ========================================
+        const ParallaxEffect = {
+            init: () => {
+                if (window.innerWidth >= 1024) {
+                    window.addEventListener('scroll', () => {
+                        const scrolled = window.scrollY;
+                        
+                        // Move thorn motifs at different speeds
+                        document.querySelectorAll('.thorn-motif').forEach((el, index) => {
+                            const speed = 0.05 + (index * 0.03);
+                            el.style.transform = `translateY(${scrolled * speed}px) rotate(${index * 180}deg)`;
+                        });
+                        
+                        // Move newspaper elements subtly
+                        document.querySelectorAll('.newspaper-triangle, .newspaper-clip-1, .newspaper-clip-2, .newspaper-clip-3').forEach((el, index) => {
+                            const speed = 0.02 + (index * 0.01);
+                            const existingTransform = el.style.transform || '';
+                            if (!existingTransform.includes('translateY')) {
+                                el.style.transform = `${existingTransform} translateY(${scrolled * speed}px)`;
+                            }
+                        });
+                    });
+                }
+            }
+        };
+        
+        // ========================================
+        // MODULE: Mobile Menu (Burger)
+        // ========================================
+        const MobileMenu = {
+            menu: null,
+            burgerBtn: null,
+            isOpen: false,
+            
+            init: () => {
+                MobileMenu.menu = document.querySelector('.mobile-menu');
+                MobileMenu.burgerBtn = document.querySelector('.burger-btn');
+                
+                if (MobileMenu.burgerBtn) {
+                    MobileMenu.burgerBtn.addEventListener('click', MobileMenu.toggle);
+                }
+                
+                // Close menu when clicking on links
+                document.querySelectorAll('.mobile-menu a').forEach(link => {
+                    link.addEventListener('click', MobileMenu.close);
+                });
+            },
+            
+            toggle: () => {
+                MobileMenu.isOpen = !MobileMenu.isOpen;
+                
+                if (MobileMenu.isOpen) {
+                    MobileMenu.menu.classList.add('active');
+                    MobileMenu.burgerBtn.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    MobileMenu.menu.classList.remove('active');
+                    MobileMenu.burgerBtn.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            },
+            
+            close: () => {
+                MobileMenu.isOpen = false;
+                MobileMenu.menu.classList.remove('active');
+                MobileMenu.burgerBtn.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        };
+        
+        // ========================================
+        // INITIALIZATION
+        // ========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            Utils.setYear();
+            Navigation.init();
+            Animations.init();
+            CTAHandler.init();
+            LanguageSwitcher.init();
+            CustomCursor.init();
+            ParallaxEffect.init();
+            MobileMenu.init();
+            
+            console.log('QWN Agency initialized');
+        });
+        
+        // Expose modules globally for future extensions
+        window.QWN = {
+            Utils,
+            Navigation,
+            Animations,
+            CTAHandler,
+            FutureModules,
+            LanguageSwitcher
+        };
+    </script>
+</body>
+</html>
