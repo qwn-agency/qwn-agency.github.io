@@ -567,18 +567,18 @@
             
             <!-- Vacancy List - Minimal List Style -->
             <div class="space-y-0">
-                <!-- Vacancy 01: Chatter -->
-                <div class="group border-t border-white/10 py-10 md:py-14 px-4 md:px-8 hover:bg-white/[0.015] transition-all duration-500 cursor-pointer" data-action="open-telegram-bot">
+<!-- Vacancy 01: Chatter -->
+                <div class="group border-t border-white/10 py-10 md:py-14 px-4 md:px-8 hover:bg-white/[0.015] transition-all duration-500 cursor-pointer" data-action="open-telegram" data-telegram-url="https://t.me/m/A0-DQwDGNDc6">
                     <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-4 mb-3">
-                                <span class="font-courier text-xs text-qwn-gray/50" data-lang="ru-vacancy1-tag">УДАЛЁННО / 24/7</span>
+<span class="font-courier text-xs text-qwn-gray/50" data-lang="ru-vacancy1-tag">УДАЛЁННО / ГИБКИЙ ГРАФИК</span>
                             </div>
                             <h3 class="font-cinzel text-2xl md:text-3xl text-qwn-white tracking-wide mb-4" data-lang="ru-vacancy1-title">
                                 Чаттер
                             </h3>
-                            <p class="font-courier text-xs md:text-sm text-qwn-gray/70 leading-relaxed max-w-2xl" data-lang="ru-vacancy1-text">
-                                Управление чатами во время трансляций. Модерация, взаимодействие с аудиторией, создание комфортной атмосферы.
+<p class="font-courier text-xs md:text-sm text-qwn-gray/70 leading-relaxed max-w-2xl" data-lang="ru-vacancy1-text">
+                                Общение с фанатами модели. Модерация, взаимодействие с аудиторией, создание комфортной атмосферы.
                             </p>
                         </div>
                         <div class="flex-shrink-0">
@@ -587,8 +587,8 @@
                     </div>
                 </div>
                 
-                <!-- Vacancy 02: Scout -->
-                <div class="group border-t border-white/10 py-10 md:py-14 px-4 md:px-8 hover:bg-white/[0.015] transition-all duration-500 cursor-pointer" data-action="open-telegram-bot">
+<!-- Vacancy 02: Scout -->
+                <div class="group border-t border-white/10 py-10 md:py-14 px-4 md:px-8 hover:bg-white/[0.015] transition-all duration-500 cursor-pointer" data-action="open-telegram" data-telegram-url="https://t.me/qwn_agency_bot">
                     <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-4 mb-3">
@@ -607,18 +607,18 @@
                     </div>
                 </div>
                 
-                <!-- Vacancy 03: Operator -->
-                <div class="group border-t border-b border-white/10 py-10 md:py-14 px-4 md:px-8 hover:bg-white/[0.015] transition-all duration-500 cursor-pointer" data-action="open-telegram-bot">
+<!-- Vacancy 03: Operator -->
+                <div class="group border-t border-b border-white/10 py-10 md:py-14 px-4 md:px-8 hover:bg-white/[0.015] transition-all duration-500 cursor-pointer" data-action="open-telegram" data-telegram-url="https://t.me/qwn_agency_bot">
                     <div class="flex flex-col md:flex-row md:items-baseline justify-between gap-4">
                         <div class="flex-1">
                             <div class="flex items-center gap-4 mb-3">
-                                <span class="font-courier text-xs text-qwn-gray/50" data-lang="ru-vacancy3-tag">В ОФИСЕ / СМЕНЫ</span>
+<span class="font-courier text-xs text-qwn-gray/50" data-lang="ru-vacancy3-tag">УДАЛЁННО / 5/2, 4/3</span>
                             </div>
                             <h3 class="font-cinzel text-2xl md:text-3xl text-qwn-white tracking-wide mb-4" data-lang="ru-vacancy3-title">
                                 Оператор
                             </h3>
-                            <p class="font-courier text-xs md:text-sm text-qwn-gray/70 leading-relaxed max-w-2xl" data-lang="ru-vacancy3-text">
-                                Техническое обеспечение трансляций. Работа со светом, камерами, звуком. Настройка оборудования.
+<p class="font-courier text-xs md:text-sm text-qwn-gray/70 leading-relaxed max-w-2xl" data-lang="ru-vacancy3-text">
+                                Модерация трансляций, помощь модели. Повышение охватов стримов, разговор с аудиторией.
                             </p>
                         </div>
                         <div class="flex-shrink-0">
@@ -653,7 +653,7 @@
                 
                 <!-- Social Links -->
                 <div class="flex gap-6">
-                    <a href="#" class="font-courier text-xs text-qwn-gray hover:text-qwn-white transition-colors no-underline" data-lang="ru-footer-tg">TELEGRAM</a>
+<a href="https://t.me/sexpeq" class="font-courier text-xs text-qwn-gray hover:text-qwn-white transition-colors no-underline" data-lang="ru-footer-tg">TELEGRAM</a>
                 </div>
             </div>
         </div>
@@ -765,12 +765,12 @@
         // ========================================
         // MODULE: CTA Handler
         // ========================================
-        const CTAHandler = {
+const CTAHandler = {
             init: () => {
-                document.querySelectorAll('[data-action="open-telegram-bot"]').forEach(btn => {
+                document.querySelectorAll('[data-action="open-telegram"]').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         e.preventDefault();
-                        const telegramUrl = 'https://t.me/your_bot_name';
+                        const telegramUrl = btn.getAttribute('data-telegram-url') || 'https://t.me/qwn_agency_bot';
                         window.open(telegramUrl, '_blank');
                     });
                 });
@@ -794,15 +794,15 @@
                     'career-prefix': '// Команда',
                     'career-title': 'ВАКАНСИИ',
                     'career-manifesto': 'Мы ищем тех, кто чувствует эстетику цифрового андеграунда.<br class="hidden md:block">Кто готов работать на стыке искусства и технологий.',
-                    'vacancy1-tag': 'УДАЛЁННО / 24/7',
+'vacancy1-tag': 'УДАЛЁННО / ГИБКИЙ ГРАФИК',
                     'vacancy1-title': 'Чаттер',
-                    'vacancy1-text': 'Управление чатами во время трансляций. Модерация, взаимодействие с аудиторией, создание комфортной атмосферы.',
+                    'vacancy1-text': 'Общение с фанатами модели. Модерация, взаимодействие с аудиторией, создание комфортной атмосферы.',
                     'vacancy2-tag': 'УДАЛЁННО / ГИБКИЙ',
                     'vacancy2-title': 'Скаут',
                     'vacancy2-text': 'Поиск и привлечение новых талантов. Работа в социальных сетях, первичные переговоры.',
-                    'vacancy3-tag': 'В ОФИСЕ / СМЕНЫ',
+'vacancy3-tag': 'УДАЛЁННО / 5/2, 4/3',
                     'vacancy3-title': 'Оператор',
-                    'vacancy3-text': 'Техническое обеспечение трансляций. Работа со светом, камерами, звуком. Настройка оборудования.',
+                    'vacancy3-text': 'Модерация трансляций, помощь модели. Повышение охватов стримов, разговор с аудиторией.',
                     'vacancy-apply': 'ОТКЛИКНУТЬСЯ',
                     'vacancy-footer': '[ ВСЕ ВАКАНСИИ ОТКРЫТЫ ДЛЯ РЕГИОНОВ ]',
                     'footer-tg': 'TELEGRAM'
@@ -817,15 +817,15 @@
                     'career-prefix': '// Team',
                     'career-title': 'VACANCIES',
                     'career-manifesto': 'We seek those who feel the aesthetics of digital underground.<br class="hidden md:block">Who are ready to work at the intersection of art and technology.',
-                    'vacancy1-tag': 'REMOTE / 24/7',
+'vacancy1-tag': 'REMOTE / FLEXIBLE SCHEDULE',
                     'vacancy1-title': 'Chatter',
-                    'vacancy1-text': 'Managing chats during broadcasts. Moderation, audience interaction, creating a comfortable atmosphere.',
+                    'vacancy1-text': 'Communication with model fans. Moderation, audience interaction, creating a comfortable atmosphere.',
                     'vacancy2-tag': 'REMOTE / FLEXIBLE',
                     'vacancy2-title': 'Scout',
                     'vacancy2-text': 'Finding and attracting new talent. Working on social media, initial negotiations.',
-                    'vacancy3-tag': 'ONSITE / SHIFT',
+'vacancy3-tag': 'REMOTE / 5/2, 4/3',
                     'vacancy3-title': 'Operator',
-                    'vacancy3-text': 'Technical support for broadcasts. Working with lighting, cameras, sound. Equipment setup.',
+                    'vacancy3-text': 'Broadcast moderation, model assistance. Increasing stream reach, audience engagement.',
                     'vacancy-apply': 'Apply Now',
                     'vacancy-footer': '[ ALL POSITIONS OPEN FOR REGIONS ]',
                     'footer-tg': 'TELEGRAM'

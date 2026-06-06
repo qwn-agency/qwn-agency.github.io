@@ -179,7 +179,7 @@
         
         /* Sigil Divider - Occult Symbol Style */
         .sigil-divider {
-            width: 100%;
+            position: relative;
             height: 80px;
             display: flex;
             align-items: center;
@@ -342,12 +342,12 @@
                 radial-gradient(ellipse at 80% 70%, rgba(0,0,0,0.2) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%);
             mix-blend-mode: overlay;
-            }
-            
-            /* Newspaper Clip Art Backgrounds */
-            .newspaper-clip-1 {
-                position: absolute;
-                top: 10%;
+        }
+        
+        /* Newspaper Clip Art Backgrounds */
+        .newspaper-clip-1 {
+            position: absolute;
+            top: 10%;
             right: 5%;
             width: 280px;
             height: 350px;
@@ -686,6 +686,79 @@
             padding-top: 1.5rem;
             border-top: 1px solid rgba(250, 250, 250, 0.1);
         }
+
+        /* Model Card Styles - ERD Dossier Style */
+        .model-card {
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(250, 250, 250, 0.08);
+            background: rgba(10, 10, 10, 0.5);
+        }
+        
+        .model-card:hover {
+            border-color: rgba(250, 250, 250, 0.15);
+            background: rgba(26, 26, 26, 0.6);
+        }
+        
+        .model-card:hover .model-photo img {
+            transform: scale(1.05);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .model-photo {
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(250, 250, 250, 0.06);
+        }
+        
+        .model-photo img {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .model-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(10, 10, 10, 0.8) 100%);
+            pointer-events: none;
+        }
+        
+        .model-info {
+            padding: 1.25rem 1rem;
+            position: relative;
+        }
+        
+        /* ERD-style corner accents */
+        .model-card::before,
+        .model-card::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border: 1px solid rgba(250, 250, 250, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .model-card::before {
+            top: 6px;
+            left: 6px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .model-card::after {
+            bottom: 6px;
+            right: 6px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        .model-card:hover::before,
+        .model-card:hover::after {
+            width: 12px;
+            height: 12px;
+            border-color: rgba(250, 250, 250, 0.25);
+        }
     </style>
 </head>
 <body class="qwn-black">
@@ -775,7 +848,7 @@
             <p class="font-playfair text-lg md:text-xl lg:text-2xl text-qwn-milk italic opacity-80 mb-12 animate-slide-up max-w-3xl mx-auto leading-relaxed" data-lang="ru-hero-text">
                 Мы переосмыслили концепт онлайн-вещания. Qwn Agency - это закрытая экосистема для топ-стримеров, где твоя индивидуальность конвертируется в высокий доход без ущерба для твоей безопасности.
                 <br class="hidden md:block">
-                Цифровая автономия. Премиальный трафик. Полная анонимность.
+                Мы не создаём звёзд. Мы раскрываем тех, кто уже сияет - просто никто ещё не видел настоящего света.
             </p>
             
             <!-- CTA Button -->
@@ -791,7 +864,6 @@
     </section>
 
     <!-- Section Divider (Sigil Style) -->
-    <!-- <div class="section-divider"></div> -->
     <div class="sigil-divider">
         <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
             <!-- Outer decorative lines -->
@@ -924,7 +996,6 @@
     </section>
 
     <!-- Section Divider (Sigil Style) -->
-    <!-- <div class="section-divider"></div> -->
     <div class="sigil-divider">
         <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
             <line x1="20" y1="30" x2="80" y2="30" stroke-width="0.8"/>
@@ -1070,7 +1141,6 @@
     </section>
 
     <!-- Section Divider (Sigil Style) -->
-    <!-- <div class="section-divider"></div> -->
     <div class="sigil-divider">
         <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
             <line x1="20" y1="30" x2="80" y2="30" stroke-width="0.8"/>
@@ -1097,9 +1167,9 @@
     </div>
 
     <!-- ============================================ -->
-    <!-- MODULE: GALLERY (Optional Extension Module) -->
+    <!-- MODULE: MODELS GALLERY -->
     <!-- ============================================ -->
-    <section class="module py-24 md:py-32 px-6 relative overflow-hidden">
+    <section id="models" class="module py-24 md:py-32 px-6 relative overflow-hidden">
         <!-- Newspaper Background Elements -->
         <div class="newspaper-triangle" style="bottom: 20%; right: 15%; transform: rotate(-35deg) scale(0.6);"></div>
         <div class="newspaper-clip-3"></div>
@@ -1108,52 +1178,55 @@
         <div class="max-w-7xl mx-auto relative z-10">
             <!-- Section Header -->
             <div class="mb-16 md:mb-24">
-                <span class="font-courier text-xs tracking-wider text-qwn-gray block mb-4" data-lang="ru-gallery-prefix">// Галерея</span>
-                <h2 class="font-cinzel text-3xl md:text-4xl lg:text-5xl text-qwn-white tracking-wider" data-lang="ru-gallery-title">
-                    Наши Лица
+                <span class="font-courier text-xs tracking-wider text-qwn-gray block mb-4" data-lang="ru-models-prefix">// НАШИ ЛИЦА</span>
+                <h2 class="font-cinzel text-3xl md:text-4xl lg:text-5xl text-qwn-white tracking-wider" data-lang="ru-models-title">
+                    QWN TALENTS
                 </h2>
+                <p class="font-playfair text-sm md:text-base text-qwn-gray mt-4 max-w-xl italic" data-lang="ru-models-subtitle">
+                    Лица, которые говорят сами за себя. Без масок. Без компромиссов.
+                </p>
             </div>
-            
-            <!-- Gallery Grid with Gothic Frames -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4">
-                <div class="aspect-[3/4] overflow-hidden grayscale-high group gothic-frame">
-                    <img 
-                        src="https://cdn.pixabay.com/photo/2016/11/29/08/02/woman-1867136_1280.jpg" 
-                        alt="Model 01" 
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        referrerpolicy="no-referrer"
-                    >
+
+            <!-- Models Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- Model 01 -->
+                <div class="model-card fade-in">
+                    <div class="model-photo">
+                        <img src="model01.jpg" 
+                             alt="Model 01" 
+                             class="w-full aspect-[4/5] object-cover grayscale-high">
+                    </div>
+                    <div class="model-info">
+                        <h3 class="font-cinzel text-lg text-qwn-white mb-3" data-lang="ru-model1-name">ВАЛЕНТИНА</h3>
+                        <div class="font-courier text-xs text-qwn-gray space-y-1">
+                            <p><span class="text-qwn-gray/50" data-lang="ru-label-exp">СТАЖ</span>: <span data-lang="ru-model1-exp">2 месяца</span></p>
+                            <p><span class="text-qwn-gray/50" data-lang="ru-label-result">РЕЗУЛЬТАТ</span>: <span data-lang="ru-model1-result">3.400$/мес</span></p>
+<p><span class="text-qwn-gray/50" data-lang="ru-label-status">СТАТУС</span>: <span class="text-qwn-white/90" data-lang="ru-model1-status">NEW STAR</span></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="aspect-[3/4] overflow-hidden grayscale-high group gothic-frame md:mt-12">
-                    <img 
-                        src="https://cdn.pixabay.com/photo/2017/03/19/19/58/woman-2156903_1280.jpg" 
-                        alt="Model 02" 
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        referrerpolicy="no-referrer"
-                    >
-                </div>
-                <div class="aspect-[3/4] overflow-hidden grayscale-high group gothic-frame">
-                    <img 
-                        src="https://cdn.pixabay.com/photo/2015/09/02/12/41/model-918567_1280.jpg" 
-                        alt="Model 03" 
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        referrerpolicy="no-referrer"
-                    >
-                </div>
-                <div class="aspect-[3/4] overflow-hidden grayscale-high group gothic-frame md:mt-12">
-                    <img 
-                        src="https://cdn.pixabay.com/photo/2016/01/19/17/22/woman-1149353_1280.jpg" 
-                        alt="Model 04" 
-                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        referrerpolicy="no-referrer"
-                    >
+
+                <!-- Model 02 -->
+                <div class="model-card fade-in">
+                    <div class="model-photo">
+                        <img src="model02.jpg" 
+                             alt="Model 02" 
+                             class="w-full aspect-[4/5] object-cover grayscale-high">
+                    </div>
+                    <div class="model-info">
+                        <h3 class="font-cinzel text-lg text-qwn-white mb-3" data-lang="ru-model2-name">КСЕНИЯ</h3>
+                        <div class="font-courier text-xs text-qwn-gray space-y-1">
+                            <p><span class="text-qwn-gray/50" data-lang="ru-label-exp">СТАЖ</span>: <span data-lang="ru-model2-exp">6 месяцев</span></p>
+                            <p><span class="text-qwn-gray/50" data-lang="ru-label-result">РЕЗУЛЬТАТ</span>: <span data-lang="ru-model2-result">9.750$/мес</span></p>
+<p><span class="text-qwn-gray/50" data-lang="ru-label-status">СТАТУС</span>: <span class="text-qwn-white/90" data-lang="ru-model2-status">TOP TIER</span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Section Divider (Sigil Style) -->
-    <!-- <div class="section-divider"></div> -->
     <div class="sigil-divider">
         <svg viewBox="0 0 400 60" xmlns="http://www.w3.org/2000/svg">
             <line x1="20" y1="30" x2="80" y2="30" stroke-width="0.8"/>
@@ -1200,10 +1273,9 @@
             </h2>
             
             <!-- Main CTA Button -->
-            <a 
-                href="#" 
+<a 
+                href="https://t.me/m/Zh0Ja0mNMWNi" 
                 class="btn-premium btn-premium-lg inline-block"
-                data-action="open-telegram-bot"
                 data-lang="ru-cta-btn"
             >
                 Заполнить анкету
@@ -1232,7 +1304,7 @@
                 
                 <!-- Social Links (Optional) -->
                 <div class="flex gap-6">
-                    <a href="#" class="font-courier text-xs text-qwn-gray hover:text-qwn-white transition-colors no-underline" data-lang="ru-footer-tg">TELEGRAM</a>
+<a href="https://t.me/sexpeq" class="font-courier text-xs text-qwn-gray hover:text-qwn-white transition-colors no-underline" data-lang="ru-footer-tg">TELEGRAM</a>
                 </div>
             </div>
         </div>
@@ -1240,10 +1312,10 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu">
-        <a href="index.html#conditions" data-lang="ru-nav-conditions">УСЛОВИЯ</a>
-        <a href="index.html#stages" data-lang="ru-nav-stages">ЭТАПЫ</a>
+        <a href="#conditions" data-lang="ru-nav-conditions">УСЛОВИЯ</a>
+        <a href="#stages" data-lang="ru-nav-stages">ЭТАПЫ</a>
         <a href="vacancies.html" data-lang="ru-nav-career">ДРУГИЕ ВАКАНСИИ</a>
-        <a href="index.html#apply" data-lang="ru-nav-apply">АНКЕТА</a>
+        <a href="#apply" data-lang="ru-nav-apply">АНКЕТА</a>
         
         <!-- Mobile Language Switcher -->
         <div class="mobile-lang-switcher">
@@ -1364,7 +1436,7 @@
                     );
                     
                     // Observe elements
-                    document.querySelectorAll('.module h2, .module h3, .module p').forEach(el => {
+                    document.querySelectorAll('.module h2, .module h3, .module p, .model-card').forEach(el => {
                         el.classList.add('opacity-0', 'translate-y-8');
                         Animations.observer.observe(el);
                     });
@@ -1441,7 +1513,7 @@
                     'nav-stages': 'ЭТАПЫ',
                     'nav-career': 'ДРУГИЕ ВАКАНСИИ',
                     'nav-apply': 'АНКЕТА',
-                    'hero-text': 'Мы переосмыслили концепт онлайн-вещания. Qwn Agency - это экосистема для топ-стримеров, где твоя индивидуальность конвертируется в высокий доход без ущерба для твоей безопасности.<br class="hidden md:block">Цифровая автономия. Премиальный трафик. Полная анонимность.',
+                    'hero-text': 'Мы переосмыслили концепт онлайн-вещания. Qwn Agency — это закрытая экосистема для топ-стримеров, где твоя индивидуальность конвертируется в высокий доход без ущерба для твоей безопасности.<br class="hidden md:block">Мы не создаём звёзд. Мы раскрываем тех, кто уже сияет — просто никто ещё не видел настоящего света.',
                     'cta-hero': 'Заполнить анкету',
                     'conditions-title': 'Условия & Концепт',
                     'card1-title': 'Формат автономии',
@@ -1464,35 +1536,36 @@
                     'stage2-5-num': 'Этап 03',
                     'stage2-5-title': 'Онбординг & Сетап',
                     'stage2-5-text': 'Подготовка оборудования, аккаунтов и софта нашими специалистами. Ты получаешь готовую инфраструктуру для старта.',
-                    'stage3-num': 'Этап 03',
+                    'stage3-num': 'Этап 04',
                     'stage3-title': 'Генерация прибыли',
                     'stage3-text': 'Первый выход в онлайн под контролем личного ментора. Вывод чистой прибыли с первых часов трансляции. Моментальные выплаты без задержек и скрытых комиссий.',
-                    'stage4-num': 'Этап 04',
+                    'stage4-num': 'Этап 05',
                     'stage4-title': 'Масштабирование',
                     'stage4-text': 'Развитие личного бренда, выход на новые платформы, увеличение аудитории и дохода. Ты растёшь - мы предоставляем ресурсы и поддержку.',
-                    'gallery-prefix': '// Галерея',
-                    'gallery-title': 'Наши Лица',
+                    'models-prefix': '// НАШИ ЛИЦА',
+                    'models-title': 'QWN TALENTS',
+                    'models-subtitle': 'Лица, которые говорят сами за себя. Без масок. Без компромиссов.',
+                    'label-exp': 'СТАЖ',
+                    'label-result': 'РЕЗУЛЬТАТ',
+                    'label-status': 'СТАТУС',
+                    'model1-name': 'ВАЛЕНТИНА',
+                    'model1-exp': '2 месяца',
+                    'model1-result': '3.400$/мес',
+'model1-status': 'NEW STAR',
+                    'model2-name': 'КСЕНИЯ',
+                    'model2-exp': '6 месяцев',
+                    'model2-result': '9.750$/мес',
+'model2-status': 'TOP TIER',
+                    'model3-exp': '6 месяцев',
+                    'model3-result': '5.000$/мес',
+                    'model3-status': 'TOP TIER',
+                    'model4-exp': '6 месяцев',
+                    'model4-result': '5.000$/мес',
+                    'model4-status': 'TOP TIER',
                     'cta-manifesto': '«Твой запуск на закрытых мировых платформах. Безопасно. Анонимно.<br class="hidden md:block">Цифровая приватность - новая валюта свободы.»',
                     'cta-title': 'СТАТЬ ЧАСТЬЮ',
                     'cta-btn': 'Заполнить анкету',
                     'cta-secondary': 'Доступ к платформам. Полный контроль. Моментальный старт.',
-                    'career-prefix': '// Команда',
-                    'career-title': 'Вакансии',
-                    'vacancy0-tag': 'УДАЛЁННО / ГИБКИЙ ГРАФИК',
-                    'vacancy0-title': 'Модель',
-                    'vacancy0-text': 'Создание премиального контента на закрытых платформах. Полная анонимность, безопасная среда, высокий доход. Ты контролируешь формат и границы.',
-                    'vacancy1-tag': 'УДАЛЁННО / 24/7',
-                    'vacancy1-title': 'Чаттер',
-                    'vacancy1-text': 'Управление чатами во время трансляций. Модерация, взаимодействие с аудиторией, создание комфортной атмосферы. Опыт работы с соцсетями приветствуется.',
-                    'vacancy2-tag': 'УДАЛЁННО / ГИБКИЙ',
-                    'vacancy2-title': 'Скаут',
-                    'vacancy2-text': 'Поиск и привлечение новых талантов. Работа в социальных сетях, первичные переговоры, презентация агентства. Коммуникабельность и умение убеждать.',
-                    'vacancy3-tag': 'В ОФИСЕ / СМЕНЫ',
-                    'vacancy3-title': 'Оператор',
-                    'vacancy3-text': 'Техническое обеспечение трансляций. Работа со светом, камерами, звуком. Настройка оборудования, контроль качества эфира. Опыт съёмки желателен.',
-                    'vacancy-apply': 'ОТКЛИКНУТЬСЯ',
-                    'vacancy-footer': '[ ВСЕ ВАКАНСИИ ОТКРЫТЫ ДЛЯ РЕГИОНОВ ]',
-                    'footer-copyright': '© <span id="current-year"></span> QWN Agency. All rights reserved.',
                     'footer-tg': 'TELEGRAM'
                 },
                 en: {
@@ -1500,7 +1573,7 @@
                     'nav-stages': 'STAGES',
                     'nav-career': 'OTHER VACANCIES',
                     'nav-apply': 'APPLY',
-                    'hero-text': 'We reimagined online broadcasting. Qwn Agency is an ecosystem for top streamers where your individuality converts into high income without compromising your security.<br class="hidden md:block">Digital autonomy. Premium traffic. Complete anonymity.',
+                    'hero-text': 'We reimagined online broadcasting. Qwn Agency is a closed ecosystem for top streamers where your individuality converts into high income without compromising your security.<br class="hidden md:block">We don\'t create stars. We reveal those who already shine - only no one has seen the real light yet.',
                     'cta-hero': 'Complete Application',
                     'conditions-title': 'Conditions & Concept',
                     'card1-title': 'Autonomy Format',
@@ -1529,29 +1602,30 @@
                     'stage4-num': 'Stage 05',
                     'stage4-title': 'Scaling',
                     'stage4-text': 'Personal brand development, expansion to new platforms, growing audience and income. You grow - we provide resources and support.',
-                    'gallery-prefix': '// Gallery',
-                    'gallery-title': 'Our Faces',
+                    'models-prefix': '// OUR FACES',
+                    'models-title': 'QWN TALENTS',
+                    'models-subtitle': 'Faces that speak for themselves. No masks. No compromises.',
+                    'label-exp': 'EXPERIENCE',
+                    'label-result': 'RESULT',
+                    'label-status': 'STATUS',
+'model1-name': 'VALENTINA',
+                    'model1-exp': '2 months',
+                    'model1-result': '$3,400/month',
+                    'model1-status': 'NEW STAR',
+                    'model2-name': 'KSENIA',
+                    'model2-exp': '6 months',
+                    'model2-result': '$9,750/month',
+                    'model2-status': 'TOP TIER',
+                    'model3-exp': '6 months',
+                    'model3-result': '$5,000/month',
+                    'model3-status': 'TOP TIER',
+                    'model4-exp': '6 months',
+                    'model4-result': '$5,000/month',
+                    'model4-status': 'TOP TIER',
                     'cta-manifesto': '«Your launch on closed global platforms. Safe. Anonymous.<br class="hidden md:block">Digital privacy is the new currency of freedom.»',
                     'cta-title': 'BECOME PART OF',
                     'cta-btn': 'Complete Application',
                     'cta-secondary': 'Platform access. Full control. Instant start.',
-                    'career-prefix': '// Team',
-                    'career-title': 'Vacancies',
-                    'vacancy0-tag': 'REMOTE / FLEXIBLE',
-                    'vacancy0-title': 'Model',
-                    'vacancy0-text': 'Creating premium content on closed platforms. Complete anonymity, safe environment, high income. You control the format and boundaries.',
-                    'vacancy1-tag': 'REMOTE / 24/7',
-                    'vacancy1-title': 'Chatter',
-                    'vacancy1-text': 'Managing chats during broadcasts. Moderation, audience interaction, creating a comfortable atmosphere. Social media experience is a plus.',
-                    'vacancy2-tag': 'REMOTE / FLEXIBLE',
-                    'vacancy2-title': 'Scout',
-                    'vacancy2-text': 'Finding and attracting new talent. Working on social media, initial negotiations, presenting the agency. Communication skills and persuasiveness required.',
-                    'vacancy3-tag': 'ONSITE / SHIFT',
-                    'vacancy3-title': 'Operator',
-                    'vacancy3-text': 'Technical support for broadcasts. Working with lighting, cameras, sound. Equipment setup, broadcast quality control. Shooting experience is desirable.',
-                    'vacancy-apply': 'Apply Now',
-                    'vacancy-footer': '[ ALL POSITIONS OPEN FOR REGIONS ]',
-                    'footer-copyright': '© <span id="current-year"></span> QWN Agency. All rights reserved.',
                     'footer-tg': 'TELEGRAM'
                 }
             },
